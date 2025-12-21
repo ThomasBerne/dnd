@@ -15,15 +15,20 @@
     "lint:style:fix": "stylelint --fix \"**/*.{scss,vue}\""
   },
   "dependencies": {
+    "@iconify-json/game-icons": "^1.2.3",
     "@iconify-json/lucide": "^1.2.74",
     "@iconify-json/simple-icons": "^1.2.59",
     "@nuxt/hints": "1.0.0-alpha.4",
     "@nuxt/image": "2.0.0",
     "@nuxt/ui": "^4.2.1",
+    "dompurify": "^3.3.1",
+    "html-to-image": "^1.11.13",
     "nuxt": "^4.2.2"
   },
   "devDependencies": {
+    "@dxup/unimport": "^0.1.2",
     "@nuxt/eslint": "^1.12.1",
+    "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-better-tailwindcss": "^4.0.0-prettier.1",

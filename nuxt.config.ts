@@ -2,9 +2,15 @@
 export default defineNuxtConfig({
   extends: ['infrastructure/vite'],
 
-  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/image', '@nuxt/hints'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/ui',
+    '@nuxt/image',
+    '@nuxt/hints',
+    '@vueuse/nuxt',
+  ],
 
-  imports: { dirs: ['app/types/*'] },
+  imports: { dirs: ['~/types'] },
 
   devtools: {
     enabled: true,

@@ -26,9 +26,29 @@ export enum CardMagicItemRarity {
   Variable = 'variable',
 }
 
+export enum CardMagicItemObjectType {
+  Weapon = 'weapon',
+  Armor = 'armor',
+  WondrousItem = 'wondrous_item',
+  Ring = 'ring',
+  Rod = 'rod',
+  Staff = 'staff',
+  Scroll = 'scroll',
+  Potion = 'potion',
+  Wand = 'wand',
+}
+
 export type CardMagicItem = {
   type: CardType.MagicItem;
-  rarity: CardMagicItemRarity;
+  rarity?: CardMagicItemRarity;
+  rarityDescription?: string;
+  objectType?: CardMagicItemObjectType;
+  objectTypeDescription?: string;
+  attunementRequired?: boolean;
+  attunementDescription?: string;
+  description?: string;
+  image?: File;
 };
 
-export type Card = CardBase & (CardSpell | CardItem | CardMagicItem);
+export type Card<T = unknown> = { type: T } & CardBase &
+  (CardSpell | CardItem | CardMagicItem);

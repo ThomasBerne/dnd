@@ -1,5 +1,7 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { card } = defineProps<{ card: Card }>();
+</script>
 
 <template>
-  <div></div>
+  <CardEditorCardMagicItem v-if="card.type === CardType.MagicItem" :card />
 </template>

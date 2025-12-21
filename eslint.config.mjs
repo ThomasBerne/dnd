@@ -64,7 +64,7 @@ export default withNuxt([
     rules: {
       'better-tailwindcss/no-unknown-classes': [
         'warn',
-        { ignore: ['h-.*', 'flicker-arrow'] },
+        { ignore: ['d-.*', 'flicker-arrow'] },
       ],
       'better-tailwindcss/enforce-consistent-line-wrapping': 'off',
     },
