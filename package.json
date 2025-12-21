@@ -1,0 +1,42 @@
+{
+  "name": "dnd-cards",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "npm run lint:js && npm run lint:style",
+    "lint:js": "eslint",
+    "lint:js:fix": "eslint --fix",
+    "lint:style": "stylelint \"**/*.{scss,vue}\"",
+    "lint:style:fix": "stylelint --fix \"**/*.{scss,vue}\""
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.74",
+    "@iconify-json/simple-icons": "^1.2.59",
+    "@nuxt/hints": "1.0.0-alpha.4",
+    "@nuxt/image": "2.0.0",
+    "@nuxt/ui": "^4.2.1",
+    "nuxt": "^4.2.2"
+  },
+  "devDependencies": {
+    "@nuxt/eslint": "^1.12.1",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-better-tailwindcss": "^4.0.0-prettier.1",
+    "eslint-plugin-jsonc": "^2.21.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.7.4",
+    "sass": "^1.97.1",
+    "scss": "^0.2.4",
+    "stylelint": "^16.26.1",
+    "stylelint-config-standard-scss": "^16.0.0",
+    "stylelint-config-standard-vue": "^1.0.0",
+    "typescript": "^5.9.3",
+    "vue-tsc": "^3.1.5"
+  },
+  "packageManager": "pnpm@10.23.0"
+}
