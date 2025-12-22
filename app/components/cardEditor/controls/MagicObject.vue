@@ -62,6 +62,6 @@ const cardRarityItems = [
     v-model="card.image"
     label="Image"
     description="SVG, PNG, JPG or GIF (max. 2MB)"
-    class="w-96 min-h-48"
+    class="w-full min-h-48"
   />
 </template>

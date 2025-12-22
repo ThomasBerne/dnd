@@ -57,7 +57,6 @@ useMutationObserver(text, () => fitText(), {
 .d-auto-fit-text {
   display: inline-block;
   width: 100%;
-  height: 100%;
   word-break: break;
 }
 </style>

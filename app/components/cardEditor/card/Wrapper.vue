@@ -1,28 +1,38 @@
 <script lang="ts" setup>
 import { toBlob } from 'html-to-image';
 
+const loading = ref<boolean>(false);
+
 const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
-  console.log(
-    'document.querySelector<HTMLDivElement>(`#${side}Ref`): ',
-    document.querySelector<HTMLDivElement>(`#${side}Ref`),
-  );
-  const dataUrl = await toBlob(
-    document.querySelector<HTMLDivElement>(`#${side}Ref`)!,
-    { cacheBust: false, skipFonts: true },
-  );
-  const url = useObjectUrl(dataUrl).value;
-  navigateTo(url, {
-    open: { target: '_blank', windowFeatures: { width: 420, height: 637 } },
-  });
+  loading.value = true;
+  const el = document.querySelector<HTMLDivElement>(`#${side}Ref`)!;
+
+  if (!el) return;
+
+  try {
+    const dataUrl = await toBlob(el, { cacheBust: false, skipFonts: true });
+
+    const url = useObjectUrl(dataUrl).value;
+    navigateTo(url, {
+      open: { target: '_blank', windowFeatures: { width: 420, height: 637 } },
+    });
+  } catch (_) {
+    // ignore
+  }
+  loading.value = false;
 };
 </script>
 
 <template>
   <div class="flex gap-4 print:block print:w-full">
-    <div class="print:flex print:w-full print:justify-center">
+    <div class="print:flex print:w-full print:justify-start">
       <div class="flex justify-between mb-2 print:hidden">
         <h2 class="font-bold text-2xl">Recto</h2>
-        <UButton icon="lucide:download" @click="downloadImage('front')" />
+        <UButton
+          icon="lucide:download"
+          :loading="loading"
+          @click="downloadImage('front')"
+        />
       </div>
 
       <div id="frontRef">
@@ -32,10 +42,14 @@ const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
 
     <div class="print:break-after-page" />
 
-    <div class="print:flex print:w-full print:justify-center">
+    <div class="print:flex print:w-full print:justify-end">
       <div class="flex justify-between mb-2 print:hidden">
         <h2 class="font-bold text-2xl">Verso</h2>
-        <UButton icon="lucide:download" @click="downloadImage('back')" />
+        <UButton
+          icon="lucide:download"
+          :loading="loading"
+          @click="downloadImage('back')"
+        />
       </div>
 
       <div id="backRef">

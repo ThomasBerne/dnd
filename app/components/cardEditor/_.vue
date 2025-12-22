@@ -1,12 +1,74 @@
 <script lang="ts" setup>
-const card = ref<Card>({
-  name: 'Le super bâton de la mort qui ',
-  type: CardType.MagicItem,
-  objectType: CardMagicItemObjectType.Weapon,
-  objectTypeDescription: 'Arc long',
-  rarity: CardMagicItemRarity.Rare,
-  rarityDescription: 'Rare',
-});
+const getDefaultValue = (type: CardType) => {
+  switch (type) {
+    case CardType.MagicItem:
+      return {
+        name: '',
+        type: CardType.MagicItem,
+        objectType: CardMagicItemObjectType.Weapon,
+        objectTypeDescription: '',
+        rarity: CardMagicItemRarity.Common,
+        rarityDescription: '',
+        attunementDescription: '',
+        attunementRequired: false,
+        description: '',
+        image: undefined,
+      } as Card<CardType.MagicItem>;
+    case CardType.Item:
+      return {
+        type: CardType.Item,
+      } as Card<CardType.Item>;
+    case CardType.Spell:
+      return {
+        // name: '',
+        // type: CardType.Spell,
+        // image: undefined,
+        // description: '',
+        // classes: [],
+        // level: undefined,
+        // school: undefined,
+        // components: [],
+        // componentsDetails: '',
+        // castingTime: '',
+        // range: '',
+        // duration: '',
+        // ritual: false,
+        // concentration: false,
+        // incantationTime: '',
+
+        name: '',
+        type: CardType.Spell,
+        image: undefined,
+        description: '',
+        classes: [],
+        level: SpellLevel.Nine,
+        school: SpellSchool.Abjuration,
+        components: [
+          SpellComponent.Verbal,
+          SpellComponent.Somatic,
+          SpellComponent.Material,
+        ],
+        componentsDetails: '',
+        castingTime: '',
+        range: '',
+        duration: '',
+        ritual: false,
+        concentration: false,
+        incantationTime: '',
+      } as Card<CardType.Spell>;
+    default:
+      throw new Error('Unsupported card type');
+  }
+};
+
+const card = ref<Card>(getDefaultValue(CardType.Spell));
+
+watch(
+  () => card.value.type,
+  (newType) => {
+    card.value = getDefaultValue(newType);
+  },
+);
 </script>
 
 <template>

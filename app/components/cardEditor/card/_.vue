@@ -4,4 +4,6 @@ const { card } = defineProps<{ card: Card }>();
 
 <template>
   <CardEditorCardMagicItem v-if="card.type === CardType.MagicItem" :card />
+  <CardEditorCardItem v-if="card.type === CardType.Item" :card />
+  <CardEditorCardSpell v-if="card.type === CardType.Spell" :card />
 </template>

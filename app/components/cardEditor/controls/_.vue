@@ -19,6 +19,7 @@ const card = defineModel<Card>({ required: true });
                 { label: 'Objet magique', value: CardType.MagicItem },
                 { label: 'Objet', value: CardType.Item },
                 { label: 'Sort', value: CardType.Spell },
+                { label: 'Aptitudes', value: CardType.Spell },
               ]"
               class="w-full"
             />
@@ -27,6 +28,10 @@ const card = defineModel<Card>({ required: true });
 
         <CardEditorControlsMagicObject
           v-if="card.type === CardType.MagicItem"
+          v-model="card"
+        />
+        <CardEditorControlsSpell
+          v-else-if="card.type === CardType.Spell"
           v-model="card"
         />
       </div>

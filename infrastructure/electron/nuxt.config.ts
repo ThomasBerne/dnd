@@ -1,11 +1,16 @@
 export default defineNuxtConfig({
-  modules: ['nuxt-electron'],
-  electron: {
-    build: [
+  modules: [
+    [
+      'nuxt-electron',
       {
-        // Main-Process entry file of the Electron App.
-        entry: 'infrastructure/electron/main.ts',
+        build: [
+          {
+            // Main-Process entry file of the Electron App.
+            entry: 'infrastructure/electron/main.ts',
+          },
+        ],
+        disableDefaultOptions: true,
       },
     ],
-  },
+  ],
 });

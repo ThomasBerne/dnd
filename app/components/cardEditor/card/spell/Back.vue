@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { card } = defineProps<{ card: Card<CardType.MagicItem> }>();
+const { card } = defineProps<{ card: Card<CardType.Spell> }>();
 
 const imageSrc = computed((): string | undefined => {
   return useObjectUrl(card.image).value;
@@ -12,7 +12,11 @@ const imageSrc = computed((): string | undefined => {
       class="absolute w-full h-full object-cover"
       src="@/assets/images/card/card-wp.webp"
     />
-    <img class="absolute w-full h-full object-cover" :src="imageSrc" />
+    <img
+      v-if="!!card.image"
+      class="absolute w-full h-full object-cover"
+      :src="imageSrc"
+    />
     <img
       class="absolute w-full h-full"
       src="@/assets/images/card/magic-verso.webp"

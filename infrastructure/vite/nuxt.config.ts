@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         '@vueuse/core',
         'html-to-image',
         '@nuxt/ui/utils/editor',
+        '@tiptap/extension-table',
       ],
     },
   },
