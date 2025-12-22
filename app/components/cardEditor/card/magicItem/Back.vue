@@ -20,7 +20,6 @@ const imageSrc = computed((): string | undefined => {
         class="absolute w-full h-full"
         src="@/assets/images/card/magic-verso.webp"
       />
-      <
     </div>
   </div>
 </template>

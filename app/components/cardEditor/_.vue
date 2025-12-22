@@ -10,11 +10,9 @@ const card = ref<Card>({
 </script>
 
 <template>
-  <div class="flex gap-4 mt-12 w-full px-16">
+  <div class="flex gap-4 mt-12 print:mt-0 w-full px-16">
     <CardEditorControls v-model="card" class="print:hidden" />
 
-    <div>
-      <CardEditorCard :card />
-    </div>
+    <CardEditorCard :card />
   </div>
 </template>

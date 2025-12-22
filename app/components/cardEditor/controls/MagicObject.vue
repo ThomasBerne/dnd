@@ -56,11 +56,7 @@ const cardRarityItems = [
     </UFormField>
   </div>
   <UFormField label="Description">
-    <UiEditor
-      v-model="card.description"
-      contentType="html"
-      class="w-full min-h-21"
-    />
+    <UiEditor v-model="card.description" class="w-full min-h-21" />
   </UFormField>
   <UFileUpload
     v-model="card.image"

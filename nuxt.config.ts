@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['infrastructure/vite'],
+  extends: ['infrastructure/vite', 'infrastructure/electron'],
 
   modules: [
     '@nuxt/eslint',
@@ -23,13 +23,4 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-01-15',
-
-  eslint: {
-    config: {
-      stylistic: {
-        commaDangle: 'never',
-        braceStyle: '1tbs',
-      },
-    },
-  },
 });

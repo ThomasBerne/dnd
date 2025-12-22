@@ -23,7 +23,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UApp>
+  <UApp class="bg-red-500">
     <UHeader class="print:hidden">
       <template #left>
         <NuxtLink to="/">

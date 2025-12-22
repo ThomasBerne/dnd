@@ -8,6 +8,7 @@ export default defineNuxtConfig({
         'dompurify',
         '@vueuse/core',
         'html-to-image',
+        '@nuxt/ui/utils/editor',
       ],
     },
   },
