@@ -30,8 +30,6 @@ export enum SpellComponent {
 
 export type CardSpell = {
   type: CardType.Spell;
-  image?: File;
-  description?: string;
   level?: SpellLevel;
   school?: SpellSchool;
   incantationTime?: string;

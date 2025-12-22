@@ -28,6 +28,4 @@ export type CardMagicItem = {
   objectTypeDescription?: string;
   attunementRequired?: boolean;
   attunementDescription?: string;
-  description?: string;
-  image?: File;
 };

@@ -47,29 +47,8 @@ useSeoMeta({
       </template>
     </UHeader>
 
-    <UMain>
+    <UMain class="mb-16">
       <NuxtPage />
     </UMain>
-
-    <USeparator class="print:hidden" icon="i-simple-icons-nuxtdotjs" />
-
-    <UFooter class="print:hidden">
-      <template #left>
-        <p class="text-sm text-muted">
-          Built with Nuxt UI • © {{ new Date().getFullYear() }}
-        </p>
-      </template>
-
-      <template #right>
-        <UButton
-          to="https://github.com/nuxt-ui-templates/starter"
-          target="_blank"
-          icon="i-simple-icons-github"
-          aria-label="GitHub"
-          color="neutral"
-          variant="ghost"
-        />
-      </template>
-    </UFooter>
   </UApp>
 </template>

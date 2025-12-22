@@ -19,7 +19,9 @@ const card = defineModel<Card>({ required: true });
                 { label: 'Objet magique', value: CardType.MagicItem },
                 { label: 'Objet', value: CardType.Item },
                 { label: 'Sort', value: CardType.Spell },
-                { label: 'Aptitudes', value: CardType.Spell },
+                { label: 'Aptitudes', value: CardType.Skill },
+                { label: 'Arme', value: CardType.Weapon },
+                { label: 'Armure', value: CardType.Armor },
               ]"
               class="w-full"
             />
@@ -34,6 +36,26 @@ const card = defineModel<Card>({ required: true });
           v-else-if="card.type === CardType.Spell"
           v-model="card"
         />
+        <CardEditorControlsItem
+          v-else-if="card.type === CardType.Item"
+          v-model="card"
+        />
+
+        <UFormField label="Description">
+          <UiEditor v-model="card.description" class="w-full min-h-21" />
+        </UFormField>
+
+        <UFileUpload
+          v-model="card.image"
+          label="Image"
+          description="SVG, PNG, JPG or GIF (max. 2MB)"
+          class="w-full min-h-48"
+        />
+        <label class="flex gap-2 items-center">
+          Remplir l'espace
+          <USwitch v-model="card.imageContain" />
+          Afficher l'image en entier
+        </label>
       </div>
     </UCard>
   </div>

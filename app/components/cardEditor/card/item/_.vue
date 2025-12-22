@@ -1,15 +1,15 @@
 <script lang="ts" setup>
-const { card } = defineProps<{ card: Card<CardType.MagicItem> }>();
+const { card } = defineProps<{ card: Card<CardType.Item> }>();
 </script>
 
 <template>
   <CardEditorCardWrapper>
     <template #front>
-      <CardEditorCardMagicItemFront :card />
+      <CardEditorCardItemFront :card />
     </template>
 
     <template #back>
-      <CardEditorCardMagicItemBack :card />
+      <CardEditorCardItemBack :card />
     </template>
   </CardEditorCardWrapper>
 </template>

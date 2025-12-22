@@ -17,37 +17,20 @@ const getDefaultValue = (type: CardType) => {
     case CardType.Item:
       return {
         type: CardType.Item,
+        name: '',
+        description: '',
+        weight: undefined,
       } as Card<CardType.Item>;
     case CardType.Spell:
       return {
-        // name: '',
-        // type: CardType.Spell,
-        // image: undefined,
-        // description: '',
-        // classes: [],
-        // level: undefined,
-        // school: undefined,
-        // components: [],
-        // componentsDetails: '',
-        // castingTime: '',
-        // range: '',
-        // duration: '',
-        // ritual: false,
-        // concentration: false,
-        // incantationTime: '',
-
         name: '',
         type: CardType.Spell,
         image: undefined,
         description: '',
         classes: [],
-        level: SpellLevel.Nine,
+        level: SpellLevel.Cantrip,
         school: SpellSchool.Abjuration,
-        components: [
-          SpellComponent.Verbal,
-          SpellComponent.Somatic,
-          SpellComponent.Material,
-        ],
+        components: [],
         componentsDetails: '',
         castingTime: '',
         range: '',
@@ -55,6 +38,26 @@ const getDefaultValue = (type: CardType) => {
         ritual: false,
         concentration: false,
         incantationTime: '',
+
+        // name: '',
+        // type: CardType.Spell,
+        // image: undefined,
+        // description: '',
+        // classes: [],
+        // level: SpellLevel.Nine,
+        // school: SpellSchool.Abjuration,
+        // components: [
+        //   SpellComponent.Verbal,
+        //   SpellComponent.Somatic,
+        //   SpellComponent.Material,
+        // ],
+        // componentsDetails: '',
+        // castingTime: '',
+        // range: '',
+        // duration: '',
+        // ritual: false,
+        // concentration: false,
+        // incantationTime: '',
       } as Card<CardType.Spell>;
     default:
       throw new Error('Unsupported card type');

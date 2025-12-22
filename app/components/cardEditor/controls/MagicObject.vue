@@ -55,13 +55,4 @@ const cardRarityItems = [
       <UInput v-model="card.attunementDescription" class="w-full" />
     </UFormField>
   </div>
-  <UFormField label="Description">
-    <UiEditor v-model="card.description" class="w-full min-h-21" />
-  </UFormField>
-  <UFileUpload
-    v-model="card.image"
-    label="Image"
-    description="SVG, PNG, JPG or GIF (max. 2MB)"
-    class="w-full min-h-48"
-  />
 </template>
