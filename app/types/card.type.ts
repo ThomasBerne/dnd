@@ -2,7 +2,7 @@ export enum CardType {
   Spell = 'spell',
   Item = 'item',
   MagicItem = 'magic_item',
-  Skill = 'skill',
+  Trait = 'trait',
   Weapon = 'weapon',
   Armor = 'armor',
 }
@@ -15,4 +15,6 @@ export type CardBase = {
 };
 
 export type Card<T = unknown> = { type: T } & CardBase &
-  (CardSpell | CardItem | CardMagicItem | CardSkill | CardWeapon | CardArmor);
+  (CardSpell | CardItem | CardMagicItem | CardTrait | CardWeapon | CardArmor);
+
+export type CardOnlyProp = 'front' | 'back';

@@ -1,6 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['infrastructure/vite', 'infrastructure/electron'],
+  extends: [
+    'infrastructure/vite',
+    'infrastructure/electron',
+    'infrastructure/typescript',
+  ],
 
   modules: [
     '@nuxt/eslint',
@@ -9,6 +13,7 @@ export default defineNuxtConfig({
     '@nuxt/hints',
     '@vueuse/nuxt',
   ],
+  experimental: { typedPages: true },
 
   ssr: false,
 

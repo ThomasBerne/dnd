@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { toBlob } from 'html-to-image';
 
+const { only = undefined } = defineProps<{ only?: CardOnlyProp }>();
+
 const loading = ref<boolean>(false);
 
 const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
@@ -24,9 +26,12 @@ const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
 </script>
 
 <template>
-  <div class="flex gap-4 print:block print:w-full">
-    <div class="print:flex print:w-full print:justify-start">
-      <div class="flex justify-between mb-2 print:hidden">
+  <div class="flex gap-4">
+    <div
+      v-if="!only || only === 'front'"
+      class="print:flex print:w-full print:justify-start"
+    >
+      <div v-if="!only" class="flex justify-between mb-2 print:hidden">
         <h2 class="font-bold text-2xl">Recto</h2>
         <UButton
           icon="lucide:download"
@@ -40,10 +45,11 @@ const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
       </div>
     </div>
 
-    <div class="print:break-after-page" />
-
-    <div class="print:flex print:w-full print:justify-end">
-      <div class="flex justify-between mb-2 print:hidden">
+    <div
+      v-if="!only || only === 'back'"
+      class="print:flex print:w-full print:justify-end"
+    >
+      <div v-if="!only" class="flex justify-between mb-2 print:hidden">
         <h2 class="font-bold text-2xl">Verso</h2>
         <UButton
           icon="lucide:download"

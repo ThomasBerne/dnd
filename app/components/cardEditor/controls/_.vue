@@ -1,13 +1,50 @@
 <script lang="ts" setup>
+import {
+  CardEditorControlsItem,
+  CardEditorControlsMagicObject,
+  CardEditorControlsSpell,
+  CardEditorControlsTrait,
+} from '#components';
+
+const { index, canDelete } = defineProps<{
+  index: number;
+  canDelete: boolean;
+}>();
+
 const card = defineModel<Card>({ required: true });
+
+const emit = defineEmits<{ deleteCard: [] }>();
+
+const { getDefaultValue } = useCard();
+
+watch(
+  () => card.value.type,
+  (newType) => (card.value = getDefaultValue(newType)),
+);
+
+const isMap = new Map<CardType, Component>([
+  [CardType.MagicItem, CardEditorControlsMagicObject],
+  [CardType.Spell, CardEditorControlsSpell],
+  [CardType.Item, CardEditorControlsItem],
+  [CardType.Trait, CardEditorControlsTrait],
+]);
 </script>
 
 <template>
   <div class="flex-1">
-    <h2 class="font-bold text-2xl">Contrôles</h2>
-
     <UCard class="h-full">
       <div class="flex flex-col gap-3">
+        <div class="flex justify-between gap-4">
+          <h3 class="text-xl font-bold">Carte {{ index + 1 }}</h3>
+
+          <UButton
+            icon="lucide:trash"
+            color="error"
+            :disabled="!canDelete"
+            @click="emit('deleteCard')"
+          />
+        </div>
+
         <div class="flex gap-4">
           <UFormField label="Titre" class="w-full">
             <UInput v-model="card.name" class="w-full" />
@@ -19,7 +56,7 @@ const card = defineModel<Card>({ required: true });
                 { label: 'Objet magique', value: CardType.MagicItem },
                 { label: 'Objet', value: CardType.Item },
                 { label: 'Sort', value: CardType.Spell },
-                { label: 'Aptitudes', value: CardType.Skill },
+                { label: 'Aptitudes', value: CardType.Trait },
                 { label: 'Arme', value: CardType.Weapon },
                 { label: 'Armure', value: CardType.Armor },
               ]"
@@ -28,29 +65,20 @@ const card = defineModel<Card>({ required: true });
           </UFormField>
         </div>
 
-        <CardEditorControlsMagicObject
-          v-if="card.type === CardType.MagicItem"
-          v-model="card"
-        />
-        <CardEditorControlsSpell
-          v-else-if="card.type === CardType.Spell"
-          v-model="card"
-        />
-        <CardEditorControlsItem
-          v-else-if="card.type === CardType.Item"
-          v-model="card"
-        />
+        <component :is="isMap.get(card.type)!" v-model="card" />
 
         <UFormField label="Description">
           <UiEditor v-model="card.description" class="w-full min-h-21" />
         </UFormField>
 
-        <UFileUpload
-          v-model="card.image"
-          label="Image"
-          description="SVG, PNG, JPG or GIF (max. 2MB)"
-          class="w-full min-h-48"
-        />
+        <UFormField label="Image">
+          <UFileUpload
+            v-model="card.image"
+            label="Image"
+            description="SVG, PNG, JPG or GIF (max. 2MB)"
+            class="w-full min-h-48"
+          />
+        </UFormField>
         <label class="flex gap-2 items-center">
           Remplir l'espace
           <USwitch v-model="card.imageContain" />

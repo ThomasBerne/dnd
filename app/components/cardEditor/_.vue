@@ -1,83 +1,75 @@
 <script lang="ts" setup>
-const getDefaultValue = (type: CardType) => {
-  switch (type) {
-    case CardType.MagicItem:
-      return {
-        name: '',
-        type: CardType.MagicItem,
-        objectType: CardMagicItemObjectType.Weapon,
-        objectTypeDescription: '',
-        rarity: CardMagicItemRarity.Common,
-        rarityDescription: '',
-        attunementDescription: '',
-        attunementRequired: false,
-        description: '',
-        image: undefined,
-      } as Card<CardType.MagicItem>;
-    case CardType.Item:
-      return {
-        type: CardType.Item,
-        name: '',
-        description: '',
-        weight: undefined,
-      } as Card<CardType.Item>;
-    case CardType.Spell:
-      return {
-        name: '',
-        type: CardType.Spell,
-        image: undefined,
-        description: '',
-        classes: [],
-        level: SpellLevel.Cantrip,
-        school: SpellSchool.Abjuration,
-        components: [],
-        componentsDetails: '',
-        castingTime: '',
-        range: '',
-        duration: '',
-        ritual: false,
-        concentration: false,
-        incantationTime: '',
+import type { TabsItem } from '@nuxt/ui';
 
-        // name: '',
-        // type: CardType.Spell,
-        // image: undefined,
-        // description: '',
-        // classes: [],
-        // level: SpellLevel.Nine,
-        // school: SpellSchool.Abjuration,
-        // components: [
-        //   SpellComponent.Verbal,
-        //   SpellComponent.Somatic,
-        //   SpellComponent.Material,
-        // ],
-        // componentsDetails: '',
-        // castingTime: '',
-        // range: '',
-        // duration: '',
-        // ritual: false,
-        // concentration: false,
-        // incantationTime: '',
-      } as Card<CardType.Spell>;
-    default:
-      throw new Error('Unsupported card type');
-  }
+const { cards, getDefaultValue } = useCard();
+
+if (cards.value.length === 0) cards.value = [getDefaultValue(CardType.Spell)];
+
+enum CardTab {
+  Controls = 'controls',
+  Preview = 'preview',
+}
+
+const tabModel = ref<CardTab>(CardTab.Controls);
+const tabItems: TabsItem[] = [
+  {
+    label: 'Contrôles',
+    value: CardTab.Controls,
+    icon: 'mdi-cog',
+    slot: CardTab.Controls,
+  },
+  {
+    label: 'Aperçu',
+    value: CardTab.Preview,
+    icon: 'mdi-eye',
+    slot: CardTab.Preview,
+  },
+];
+
+const addCard = (): void => {
+  cards.value.push(getDefaultValue(CardType.Spell));
 };
 
-const card = ref<Card>(getDefaultValue(CardType.Spell));
-
-watch(
-  () => card.value.type,
-  (newType) => {
-    card.value = getDefaultValue(newType);
-  },
-);
+const deleteCard = (index: number): void => {
+  cards.value.splice(index, 1);
+};
 </script>
 
 <template>
-  <div class="flex gap-4 mt-12 print:mt-0 w-full px-16">
-    <CardEditorControls v-model="card" class="print:hidden" />
+  <div class="mt-12 print:mt-0 w-full px-16">
+    <div class="flex justify-between gap-4">
+      <UTabs v-model="tabModel" :items="tabItems" variant="link" class="w-full">
+        <template #list-trailing>
+          <div class="flex-1 flex gap-2 justify-end">
+            <UButton icon="lucide:plus" @click="addCard">
+              Ajouter une carte
+            </UButton>
+            <UButton icon="lucide:printer" :to="{ name: 'print' }">
+              Imprimer
+            </UButton>
+          </div>
+        </template>
 
-    <CardEditorCard :card />
+        <template #controls>
+          <div class="flex gap-4 flex-wrap">
+            <CardEditorControls
+              v-for="(_, index) in cards"
+              :key="index"
+              v-model="cards[index]"
+              :index
+              :canDelete="cards.length > 1"
+              class="print:hidden min-w-[calc(50%-0.5rem)] max-w-[calc(50%-0.5rem)]"
+              @deleteCard="deleteCard(index)"
+            />
+          </div>
+        </template>
+
+        <template #preview>
+          <div v-for="(card, index) in cards" :key="index">
+            <CardEditorCard :card />
+          </div>
+        </template>
+      </UTabs>
+    </div>
   </div>
 </template>

@@ -1,9 +1,24 @@
 <script lang="ts" setup>
-const { card } = defineProps<{ card: Card }>();
+import {
+  CardEditorCardItem,
+  CardEditorCardMagicItem,
+  CardEditorCardSpell,
+  CardEditorCardTrait,
+} from '#components';
+
+const { card, only = undefined } = defineProps<{
+  card: Card;
+  only?: CardOnlyProp;
+}>();
+
+const isMap = new Map<CardType, Component>([
+  [CardType.MagicItem, CardEditorCardMagicItem],
+  [CardType.Item, CardEditorCardItem],
+  [CardType.Spell, CardEditorCardSpell],
+  [CardType.Trait, CardEditorCardTrait],
+]);
 </script>
 
 <template>
-  <CardEditorCardMagicItem v-if="card.type === CardType.MagicItem" :card />
-  <CardEditorCardItem v-if="card.type === CardType.Item" :card />
-  <CardEditorCardSpell v-if="card.type === CardType.Spell" :card />
+  <component :is="isMap.get(card.type)!" :card :only v-bind="$attrs" />
 </template>
