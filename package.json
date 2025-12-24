@@ -55,6 +55,5 @@
     "vite-plugin-electron": "^0.29.0",
     "vite-plugin-electron-renderer": "^0.14.6",
     "vue-tsc": "^3.1.5"
-  },
-  "packageManager": "pnpm@10.23.0"
+  }
 }
