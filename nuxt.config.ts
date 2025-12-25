@@ -1,10 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: [
-    'infrastructure/vite',
-    'infrastructure/electron',
-    'infrastructure/typescript',
-  ],
+  extends: ['infrastructure/vite', 'infrastructure/typescript'],
 
   modules: [
     '@nuxt/eslint',
@@ -30,4 +26,20 @@ export default defineNuxtConfig({
   },
 
   compatibilityDate: '2025-01-15',
+
+  vite: {
+    clearScreen: false,
+    envPrefix: ['VITE_', 'TAURI_'],
+    server: {
+      strictPort: true,
+      hmr: {
+        protocol: 'ws',
+        host: '0.0.0.0',
+        port: 3001,
+      },
+      watch: {
+        ignored: ['**/src-tauri/**'],
+      },
+    },
+  },
 });
