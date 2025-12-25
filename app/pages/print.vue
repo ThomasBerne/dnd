@@ -72,3 +72,11 @@ const chunks = computed((): Card[][] => {
     </template>
   </div>
 </template>
+
+<style lang="scss">
+@media print {
+  body {
+    background-color: white !important;
+  }
+}
+</style>
