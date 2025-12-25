@@ -13,10 +13,14 @@ definePageMeta({
   ],
 });
 
-onMounted(async () => {
-  window.print();
-  await navigateTo({ name: 'index' });
-});
+const print = async (): Promise<void> => {
+  await useTimeoutFn(async () => {
+    window.print();
+    await navigateTo({ name: 'index' });
+  }, 100);
+};
+
+onMounted(print);
 
 const chunks = computed((): Card[][] => {
   // Split cards into chunks of 4 cards

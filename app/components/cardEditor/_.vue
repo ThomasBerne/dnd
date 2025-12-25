@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import type { TabsItem } from '@nuxt/ui';
 
-const { cards, getDefaultValue } = useCard();
+const { cards, getDefaultValue, loadFromJsonFile, saveToJson } = useCard();
 
 if (cards.value.length === 0) cards.value = [getDefaultValue(CardType.Spell)];
 
@@ -38,6 +38,18 @@ const duplicateCard = (index: number): void => {
 const deleteCard = (index: number): void => {
   cards.value.splice(index, 1);
 };
+
+const loadDialog = useFileDialog({
+  accept: 'application/json',
+  directory: false,
+  multiple: false,
+});
+
+loadDialog.onChange((files) => {
+  if (files && files.length > 0) {
+    loadFromJsonFile(files[0]);
+  }
+});
 </script>
 
 <template>
@@ -45,6 +57,12 @@ const deleteCard = (index: number): void => {
     <UTabs v-model="tabModel" :items="tabItems" variant="link" class="w-full">
       <template #list-trailing>
         <div class="flex-1 flex gap-2 justify-end">
+          <UButton icon="lucide:download" @click="saveToJson">
+            Enregistrer les cartes
+          </UButton>
+          <UButton icon="lucide:upload" @click="loadDialog.open()">
+            Charger des cartes
+          </UButton>
           <UButton icon="lucide:plus" @click="addCard">
             Ajouter une carte
           </UButton>

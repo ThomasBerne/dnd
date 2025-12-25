@@ -1,3 +1,13 @@
+type SerializedImage = {
+  base64: string;
+  name: string;
+  type: string;
+};
+
+type SerializedCard = Omit<Card, 'image'> & {
+  image?: SerializedImage;
+};
+
 const state = createGlobalState(() => {
   return { cards: ref<Card[]>([]) };
 });
@@ -60,5 +70,83 @@ export const useCard = () => {
     }
   };
 
-  return { getDefaultValue, cards };
+  const saveToJson = async (): Promise<void> => {
+    // Convert images to base64 before saving
+    const cardsToSave = await Promise.all(
+      cards.value.map(async (card) => {
+        const cardCopy: SerializedCard = { ...card, image: undefined };
+
+        if (card.image instanceof File) {
+          const base64 = await FileUtils.fileToBase64(card.image);
+          cardCopy.image = {
+            base64,
+            name: card.image.name,
+            type: card.image.type,
+          };
+        }
+        return cardCopy;
+      }),
+    );
+
+    const dataStr =
+      'data:text/json;charset=utf-8,' +
+      encodeURIComponent(JSON.stringify(cardsToSave));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute('href', dataStr);
+    downloadAnchorNode.setAttribute('download', 'cards.json');
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+
+  const serializeCardsToCards = (jsonCards: SerializedCard[]): Card[] => {
+    const cardsResult: Card[] = jsonCards.map((card) => {
+      const cardCopy: Card = { ...card, image: undefined } as Card;
+
+      if (
+        card.image &&
+        typeof card.image === 'object' &&
+        'base64' in card.image
+      ) {
+        cardCopy.image = FileUtils.base64ToFile(
+          card.image.base64,
+          card.image.name,
+          card.image.type,
+        );
+      }
+      return cardCopy;
+    });
+    return cardsResult;
+  };
+
+  const getContentFromFile = <T>(file: File): Promise<T> => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+
+      fileReader.onload = (event) => {
+        resolve(JSON.parse(event.target?.result as string) as T);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+
+      fileReader.readAsText(file);
+    });
+  };
+
+  const loadFromJsonFile = async (jsonFile: File): Promise<void> => {
+    try {
+      const importedCards =
+        await getContentFromFile<SerializedCard[]>(jsonFile);
+
+      if (!importedCards || !Array.isArray(importedCards)) return;
+
+      cards.value = serializeCardsToCards(importedCards);
+    } catch (error) {
+      console.error('Error loading cards from JSON:', error);
+    }
+  };
+
+  return { getDefaultValue, cards, saveToJson, loadFromJsonFile };
 };
