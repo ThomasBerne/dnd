@@ -55,8 +55,8 @@ loadDialog.onChange((files) => {
 <template>
   <div class="flex justify-between gap-4">
     <UTabs v-model="tabModel" :items="tabItems" variant="link" class="w-full">
-      <template #list-trailing>
-        <div class="flex-1 flex gap-2 justify-end">
+      <template #controls>
+        <div class="flex-1 flex flex-wrap gap-2 mb-4">
           <UButton icon="lucide:download" @click="saveToJson">
             Enregistrer les cartes
           </UButton>
@@ -70,9 +70,6 @@ loadDialog.onChange((files) => {
             Imprimer
           </UButton>
         </div>
-      </template>
-
-      <template #controls>
         <div class="flex gap-4 flex-wrap">
           <CardEditorControls
             v-for="(_, index) in cards"

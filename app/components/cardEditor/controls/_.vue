@@ -36,7 +36,7 @@ const isMap = new Map<CardType, Component>([
       <div class="flex flex-col gap-3">
         <div class="flex justify-between gap-4">
           <h3 class="text-xl font-bold">
-            Carte {{ index + 1 }} - {{ card.name }}
+            Carte {{ index + 1 }} {{ card.name !== '' ? `- ${card.name}` : '' }}
           </h3>
 
           <div class="flex gap-2">
