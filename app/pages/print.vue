@@ -13,11 +13,15 @@ definePageMeta({
   ],
 });
 
+const useTimeoutPromise = (delay: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, delay));
+};
+
 const print = async (): Promise<void> => {
-  await useTimeoutFn(async () => {
-    window.print();
-    await navigateTo({ name: 'index' });
-  }, 1000);
+  await useTimeoutPromise(100);
+  window.print();
+  await useTimeoutPromise(1000);
+  await navigateTo({ name: 'index' });
 };
 
 onMounted(print);
