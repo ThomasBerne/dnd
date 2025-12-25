@@ -17,7 +17,7 @@ const print = async (): Promise<void> => {
   await useTimeoutFn(async () => {
     window.print();
     await navigateTo({ name: 'index' });
-  }, 100);
+  }, 1000);
 };
 
 onMounted(print);
