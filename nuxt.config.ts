@@ -1,6 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  extends: ['infrastructure/vite', 'infrastructure/typescript'],
+  extends: [
+    'infrastructure/file',
+    'infrastructure/typescript',
+    'infrastructure/ui',
+    'infrastructure/vite',
+  ],
 
   modules: [
     '@nuxt/eslint',
@@ -11,13 +16,21 @@ export default defineNuxtConfig({
   ],
   experimental: { typedPages: true },
 
-  imports: { dirs: ['~/types'] },
+  imports: {
+    dirs: [
+      './infrastructure/*/types',
+      './infrastructure/*/composables',
+
+      './layers/*/types',
+      './layers/*/composables',
+    ],
+  },
 
   devtools: {
     enabled: true,
   },
 
-  css: ['~/assets/css/main.css'],
+  css: ['~/infrastructure/ui/assets/css/main.css'],
 
   routeRules: {
     '/': { prerender: true },

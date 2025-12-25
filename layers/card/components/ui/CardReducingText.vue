@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-const { height = 24, maxFontSize = 32 } = defineProps<{
+const {
+  height = 24,
+  maxFontSize = 32,
+  textClass = undefined,
+} = defineProps<{
   height?: number;
   maxFontSize?: number;
-  textClass?:
-    | string
-    | Record<string, boolean>
-    | (string | Record<string, boolean>)[];
+  textClass?: ClassProp;
 }>();
 </script>
 
