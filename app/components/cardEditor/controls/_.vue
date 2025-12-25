@@ -13,7 +13,7 @@ const { index, canDelete } = defineProps<{
 
 const card = defineModel<Card>({ required: true });
 
-const emit = defineEmits<{ deleteCard: [] }>();
+const emit = defineEmits<{ delete: []; duplicate: [] }>();
 
 const { getDefaultValue } = useCard();
 
@@ -37,12 +37,24 @@ const isMap = new Map<CardType, Component>([
         <div class="flex justify-between gap-4">
           <h3 class="text-xl font-bold">Carte {{ index + 1 }}</h3>
 
-          <UButton
-            icon="lucide:trash"
-            color="error"
-            :disabled="!canDelete"
-            @click="emit('deleteCard')"
-          />
+          <div class="flex gap-2">
+            <UTooltip>
+              <UButton
+                icon="lucide:copy"
+                color="secondary"
+                :disabled="!canDelete"
+                @click="emit('duplicate')"
+              />
+              <template #content>Dupliquer la carte</template>
+            </UTooltip>
+
+            <UButton
+              icon="lucide:trash"
+              color="error"
+              :disabled="!canDelete"
+              @click="emit('delete')"
+            />
+          </div>
         </div>
 
         <div class="flex gap-4">

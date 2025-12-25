@@ -26,7 +26,7 @@ const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
 </script>
 
 <template>
-  <div class="flex gap-4">
+  <div class="flex gap-4 dark:text-neutral-700">
     <div
       v-if="!only || only === 'front'"
       class="print:flex print:w-full print:justify-start"

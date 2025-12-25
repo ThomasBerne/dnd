@@ -29,8 +29,6 @@ useSeoMeta({
         <NuxtLink to="/">
           <AppLogo class="w-auto h-6 shrink-0" />
         </NuxtLink>
-
-        <TemplateMenu />
       </template>
 
       <template #right>
@@ -46,8 +44,7 @@ useSeoMeta({
         />
       </template>
     </UHeader>
-
-    <UMain class="mb-16">
+    <UMain class="mb-16 mt-12 print:m-0 w-full px-2 md:px-16">
       <NuxtPage />
     </UMain>
   </UApp>
