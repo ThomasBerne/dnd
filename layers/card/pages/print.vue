@@ -6,34 +6,35 @@ definePageMeta({
     () => {
       const { cards } = useCard();
 
-      if (cards.value.length === 0) {
-        return navigateTo({ name: 'index' });
-      }
+      if (cards.value.length === 0) return navigateTo({ name: 'index' });
     },
   ],
 });
 
-const useTimeoutPromise = (delay: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, delay));
-};
-
-const print = async (): Promise<void> => {
-  await useTimeoutPromise(100);
-  window.print();
-  await useTimeoutPromise(1000);
-  await navigateTo({ name: 'index' });
-};
-
-onMounted(print);
-
 const chunks = computed((): Card[][] => {
-  // Split cards into chunks of 4 cards
   const chunkSize = 4;
   const chunks: Card[][] = [];
+
   for (let i = 0; i < cards.value.length; i += chunkSize) {
     chunks.push(cards.value.slice(i, i + chunkSize));
   }
   return chunks;
+});
+
+const windowFocused = useWindowFocus();
+
+const printDialogOpened = ref<boolean>(false);
+
+const print = async (): Promise<void> => {
+  await useTimeoutPromise(100);
+  printDialogOpened.value = true;
+  window.print();
+};
+
+onMounted(print);
+
+watch(windowFocused, (newVal) => {
+  if (newVal && printDialogOpened.value) navigateTo({ name: 'index' });
 });
 </script>
 
