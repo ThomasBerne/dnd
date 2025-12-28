@@ -7,9 +7,9 @@ useHead({
   },
 });
 
-const title = 'Nuxt Starter Template';
+const title = 'Générateur de cartes D&D';
 const description =
-  'A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours.';
+  'Générez facilement des cartes pour vos parties de Donjons & Dragons avec notre outil en ligne simple et rapide. Personnalisez vos cartes selon vos besoins et imprimez-les en haute qualité.';
 
 useSeoMeta({
   title,

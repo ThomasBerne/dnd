@@ -17,11 +17,6 @@ const emit = defineEmits<{ delete: []; duplicate: [] }>();
 
 const { getDefaultValue } = useCard();
 
-watch(
-  () => card.value.type,
-  (newType) => (card.value = getDefaultValue(newType)),
-);
-
 const isMap = new Map<CardType, Component>([
   [CardType.MagicItem, CardEditorControlsMagicObject],
   [CardType.Spell, CardEditorControlsSpell],
@@ -32,7 +27,7 @@ const isMap = new Map<CardType, Component>([
 
 <template>
   <div class="flex-1">
-    <UCard class="h-full">
+    <UCard class="h-full shadow-xl">
       <div class="flex flex-col gap-3">
         <div class="flex justify-between gap-4">
           <h3 class="text-xl font-bold">
@@ -74,6 +69,7 @@ const isMap = new Map<CardType, Component>([
                 { label: 'Armure', value: CardType.Armor },
               ]"
               class="w-full"
+              @update:modelValue="card = getDefaultValue($event)"
             />
           </UFormField>
         </div>
