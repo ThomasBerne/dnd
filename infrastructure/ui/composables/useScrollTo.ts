@@ -16,7 +16,5 @@ export const useScrollTo = async (
 
   const top = element.getBoundingClientRect().top + window.pageYOffset - offset;
 
-  console.log('top: ', top);
-
   window.scrollTo({ top, behavior: 'smooth' });
 };
