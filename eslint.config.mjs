@@ -58,7 +58,7 @@ export default withNuxt([
     ...eslintPluginBetterTailwindcss.configs.recommended,
     settings: {
       'better-tailwindcss': {
-        entryPoint: './app/assets/css/main.css',
+        entryPoint: './infrastructure/ui/assets/css/main.css',
       },
     },
     rules: {

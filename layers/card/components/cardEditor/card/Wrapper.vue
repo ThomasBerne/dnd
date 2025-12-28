@@ -1,67 +1,23 @@
 <script lang="ts" setup>
-import { toBlob } from 'html-to-image';
-
 const { only = undefined } = defineProps<{ only?: CardOnlyProp }>();
 
-const loading = ref<boolean>(false);
-
-const downloadImage = async (side: 'front' | 'back'): Promise<void> => {
-  loading.value = true;
-  const el = document.querySelector<HTMLDivElement>(`#${side}Ref`)!;
-
-  if (!el) return;
-
-  try {
-    const dataUrl = await toBlob(el, { cacheBust: false, skipFonts: true });
-
-    const url = useObjectUrl(dataUrl).value;
-    navigateTo(url, {
-      open: { target: '_blank', windowFeatures: { width: 420, height: 637 } },
-    });
-  } catch (_) {
-    // ignore
-  }
-  loading.value = false;
-};
+const wrapperRef = ref<HTMLDivElement>();
+const { width: wrapperWidth } = useElementSize(wrapperRef);
 </script>
 
 <template>
-  <div class="flex gap-4 dark:text-neutral-700">
-    <div
-      v-if="!only || only === 'front'"
-      class="print:flex print:w-full print:justify-start"
-    >
-      <div v-if="!only" class="flex justify-between mb-2 print:hidden">
-        <h2 class="font-bold text-2xl">Recto</h2>
-        <UButton
-          icon="lucide:download"
-          :loading="loading"
-          @click="downloadImage('front')"
-        />
-      </div>
+  <div
+    ref="wrapperRef"
+    class="flex gap-4 dark:text-neutral-700 w-full print:w-auto"
+    :class="{ 'flex-col': !only }"
+  >
+    <CardEditorCardWrapperSpacer :wrapperWidth :only>
+      <slot name="front" />
+    </CardEditorCardWrapperSpacer>
 
-      <div id="frontRef">
-        <slot name="front" />
-      </div>
-    </div>
-
-    <div
-      v-if="!only || only === 'back'"
-      class="print:flex print:w-full print:justify-end"
-    >
-      <div v-if="!only" class="flex justify-between mb-2 print:hidden">
-        <h2 class="font-bold text-2xl">Verso</h2>
-        <UButton
-          icon="lucide:download"
-          :loading="loading"
-          @click="downloadImage('back')"
-        />
-      </div>
-
-      <div id="backRef">
-        <slot name="back" />
-      </div>
-    </div>
+    <CardEditorCardWrapperSpacer :wrapperWidth :only isBack>
+      <slot name="back" />
+    </CardEditorCardWrapperSpacer>
   </div>
 </template>
 

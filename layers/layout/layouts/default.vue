@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 useHead({
   meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   link: [{ rel: 'icon', href: '/favicon.ico' }],
@@ -23,7 +23,7 @@ useSeoMeta({
 </script>
 
 <template>
-  <UApp class="bg-red-500">
+  <UApp>
     <UHeader class="print:hidden">
       <template #left>
         <NuxtLink to="/">
@@ -35,8 +35,18 @@ useSeoMeta({
         <UColorModeButton />
       </template>
     </UHeader>
-    <UMain class="mb-16 mt-12 print:m-0 w-full px-2 md:px-16">
+
+    <UMain
+      class="mb-16 pt-12 print:p-0 print:m-0 w-full px-2 md:px-16 light:bg-slate-100 print:bg-transparent!"
+    >
       <NuxtPage />
+
+      <UButton
+        size="xl"
+        icon="lucide:move-up"
+        class="rounded-full fixed z-50 bottom-4 right-4 shadow-2xl print:hidden"
+        @click="useScrollTo('body')"
+      ></UButton>
     </UMain>
   </UApp>
 </template>
