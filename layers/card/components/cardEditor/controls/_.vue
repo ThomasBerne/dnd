@@ -31,7 +31,7 @@ const isMap = new Map<CardType, Component>([
 
 <template>
   <div
-    class="h-full shadow-xl bg-white py-1 px-6 rounded-xl"
+    class="h-full shadow-xl bg-white dark:bg-slate-900 dark:border dark:border-slate-700 py-1 px-6 rounded-xl"
     @click="accordionModel = accordionModel === 'card' ? '' : 'card'"
   >
     <UAccordion
