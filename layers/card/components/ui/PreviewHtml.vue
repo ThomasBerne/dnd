@@ -86,8 +86,8 @@ const { content } = defineProps<{ content: string }>();
 
     th,
     td {
-      border: 1px solid var(--color-green-500);
-      padding: 1rem;
+      border: 1px solid var(--color-neutral-500);
+      padding: 0 0.25rem;
     }
   }
 }

@@ -42,7 +42,7 @@ watch(windowFocused, (newVal) => {
   <div class="h-full">
     <template v-for="(chunkCards, chunkIndex) in chunks" :key="chunkIndex">
       <div>
-        <div class="flex flex-wrap justify-between h-full gap-y-8">
+        <div class="flex flex-wrap justify-between h-full gap-y-8 pt-24">
           <CardEditorCard
             v-for="(card, index) in chunkCards"
             :key="`${index}-front`"
@@ -55,7 +55,7 @@ watch(windowFocused, (newVal) => {
         <div class="print:break-after-page" />
 
         <div
-          class="flex flex-wrap justify-between flex-row-reverse h-full gap-y-8"
+          class="flex flex-wrap justify-between flex-row-reverse h-full gap-y-8 pt-24"
         >
           <CardEditorCard
             v-for="(card, index) in chunkCards"
