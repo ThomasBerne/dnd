@@ -7,13 +7,7 @@ export default defineNuxtConfig({
     'infrastructure/vite',
   ],
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxt/ui',
-    '@nuxt/image',
-    '@nuxt/hints',
-    '@vueuse/nuxt',
-  ],
+  modules: ['@nuxt/eslint', '@nuxt/ui', '@nuxt/image', '@vueuse/nuxt'],
   experimental: { typedPages: true },
 
   imports: {
