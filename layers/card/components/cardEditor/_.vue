@@ -1,17 +1,19 @@
 <script lang="ts" setup>
 const { cards, getDefaultValue, loadFromJsonFile, saveToJson } = useCard();
 
-if (cards.value.length === 0) cards.value = [getDefaultValue(CardType.Spell)];
+if (cards.value.length === 0) cards.value = [getDefaultValue(CardType.Weapon)];
 
 const addCard = async (): Promise<void> => {
-  cards.value.push(getDefaultValue(CardType.Spell));
+  cards.value.push(getDefaultValue(CardType.Weapon));
   await nextTick();
-  useScrollTo(`.h-card-editor-controls-${cards.value.length}`, -2000);
+  useScrollTo(`.h-card-editor-controls-${cards.value.length}`, 200);
 };
 
-const duplicateCard = (index: number): void => {
+const duplicateCard = async (index: number): Promise<void> => {
   const cardToDuplicate = cards.value[index];
   cards.value.splice(index + 1, 0, { ...cardToDuplicate });
+  await nextTick();
+  useScrollTo(`.h-card-editor-controls-${cards.value.length}`, 200);
 };
 
 const deleteCard = (index: number): void => {

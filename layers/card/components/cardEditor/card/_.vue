@@ -4,6 +4,7 @@ import {
   CardEditorCardMagicItem,
   CardEditorCardSpell,
   CardEditorCardTrait,
+  CardEditorCardWeapon,
 } from '#components';
 
 const { card, only = undefined } = defineProps<{
@@ -16,6 +17,7 @@ const isMap = new Map<CardType, Component>([
   [CardType.Item, CardEditorCardItem],
   [CardType.Spell, CardEditorCardSpell],
   [CardType.Trait, CardEditorCardTrait],
+  [CardType.Weapon, CardEditorCardWeapon],
 ]);
 </script>
 

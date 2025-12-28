@@ -4,6 +4,7 @@ import {
   CardEditorControlsMagicObject,
   CardEditorControlsSpell,
   CardEditorControlsTrait,
+  CardEditorControlsWeapon,
 } from '#components';
 
 const { index, canDelete } = defineProps<{
@@ -24,12 +25,13 @@ const isMap = new Map<CardType, Component>([
   [CardType.Spell, CardEditorControlsSpell],
   [CardType.Item, CardEditorControlsItem],
   [CardType.Trait, CardEditorControlsTrait],
+  [CardType.Weapon, CardEditorControlsWeapon],
 ]);
 </script>
 
 <template>
-  <UCard
-    class="h-full shadow-xl"
+  <div
+    class="h-full shadow-xl bg-white py-1 px-6 rounded-xl"
     @click="accordionModel = accordionModel === 'card' ? '' : 'card'"
   >
     <UAccordion
@@ -42,30 +44,36 @@ const isMap = new Map<CardType, Component>([
       ]"
       @click.stop
     >
+      <template #trailing="{ open }">
+        <div class="flex gap-2 flex-1 justify-end items-center">
+          <UTooltip @click.stop>
+            <UButton
+              icon="lucide:copy"
+              color="secondary"
+              @click="emit('duplicate')"
+            />
+            <template #content>Dupliquer la carte</template>
+          </UTooltip>
+
+          <UButton
+            icon="lucide:trash"
+            color="error"
+            :disabled="!canDelete"
+            @click.stop
+            @click="emit('delete')"
+          />
+          <UIcon
+            name="lucide:chevron-down"
+            class="size-6 ease-in-out duration-200 transition-all"
+            :class="open ? '-rotate-180' : ''"
+          />
+        </div>
+      </template>
+
       <template #content>
         <USeparator class="mb-2" />
-        <div class="flex gap-2 flex-col lg:flex-row">
+        <div class="flex gap-4 flex-col lg:flex-row mb-4">
           <div class="flex w-full flex-col gap-3">
-            <div class="flex justify-between gap-4">
-              <div class="flex gap-2">
-                <UTooltip>
-                  <UButton
-                    icon="lucide:copy"
-                    color="secondary"
-                    @click="emit('duplicate')"
-                  />
-                  <template #content>Dupliquer la carte</template>
-                </UTooltip>
-
-                <UButton
-                  icon="lucide:trash"
-                  color="error"
-                  :disabled="!canDelete"
-                  @click="emit('delete')"
-                />
-              </div>
-            </div>
-
             <div class="flex gap-4">
               <UFormField label="Titre" class="w-full">
                 <UInput v-model="card.name" class="w-full" />
@@ -114,5 +122,5 @@ const isMap = new Map<CardType, Component>([
         </div>
       </template>
     </UAccordion>
-  </UCard>
+  </div>
 </template>

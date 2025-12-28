@@ -65,6 +65,18 @@ export const useCard = () => {
           type: CardType.Trait,
           source: TraitSource.Class,
         } as Card<CardType.Trait>;
+      case CardType.Weapon:
+        return {
+          ...baseValue,
+          type: CardType.Weapon,
+          damageDie: '',
+          damageType: DamageType.Slashing,
+          overrideDamage: '',
+          properties: [],
+          mastery: WeaponMastery.Cleave,
+          weight: '',
+          price: '',
+        } as Card<CardType.Weapon>;
       default:
         throw new Error('Unsupported card type');
     }
