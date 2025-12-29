@@ -21,15 +21,16 @@
   },
   "dependencies": {
     "@iconify-json/game-icons": "^1.2.3",
-    "@iconify-json/lucide": "^1.2.74",
-    "@iconify-json/simple-icons": "^1.2.59",
-    "@nuxt/hints": "1.0.0-alpha.4",
+    "@iconify-json/lucide": "^1.2.82",
+    "@iconify-json/simple-icons": "^1.2.64",
+    "@nuxt/hints": "1.0.0-alpha.5",
     "@nuxt/image": "2.0.0",
-    "@nuxt/ui": "^4.2.1",
+    "@nuxt/ui": "^4.3.0",
     "@tiptap/extension-table": "^3.14.0",
     "dompurify": "^3.3.1",
     "html-to-image": "^1.11.13",
-    "nuxt": "^4.2.2"
+    "nuxt": "^4.2.2",
+    "nuxt-security": "^2.5.0"
   },
   "devDependencies": {
     "@dxup/unimport": "^0.1.2",
@@ -37,7 +38,7 @@
     "@vueuse/nuxt": "^14.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-better-tailwindcss": "^4.0.0-prettier.1",
+    "eslint-plugin-better-tailwindcss": "^4.0.0-rc.0",
     "eslint-plugin-jsonc": "^2.21.0",
     "eslint-plugin-prettier": "^5.5.4",
     "prettier": "^3.7.4",
@@ -47,6 +48,6 @@
     "stylelint-config-standard-scss": "^16.0.0",
     "stylelint-config-standard-vue": "^1.0.0",
     "typescript": "^5.9.3",
-    "vue-tsc": "^3.1.5"
+    "vue-tsc": "^3.2.1"
   }
 }
