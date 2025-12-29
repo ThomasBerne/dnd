@@ -1,11 +1,11 @@
-import AbjurationIcon from '@/layers/card/assets/images/spell/school/abjuration.png';
-import ConjurationIcon from '@/layers/card/assets/images/spell/school/conjuration.png';
-import DivinationIcon from '@/layers/card/assets/images/spell/school/divination.png';
-import EnchantmentIcon from '@/layers/card/assets/images/spell/school/enchantment.png';
-import EvocationIcon from '@/layers/card/assets/images/spell/school/evocation.png';
-import IllusionIcon from '@/layers/card/assets/images/spell/school/illusion.png';
-import NecromancyIcon from '@/layers/card/assets/images/spell/school/necromancy.png';
-import TransmutationIcon from '@/layers/card/assets/images/spell/school/transmutation.png';
+import AbjurationIcon from '@/layers/card/app/assets/images/spell/school/abjuration.png';
+import ConjurationIcon from '@/layers/card/app/assets/images/spell/school/conjuration.png';
+import DivinationIcon from '@/layers/card/app/assets/images/spell/school/divination.png';
+import EnchantmentIcon from '@/layers/card/app/assets/images/spell/school/enchantment.png';
+import EvocationIcon from '@/layers/card/app/assets/images/spell/school/evocation.png';
+import IllusionIcon from '@/layers/card/app/assets/images/spell/school/illusion.png';
+import NecromancyIcon from '@/layers/card/app/assets/images/spell/school/necromancy.png';
+import TransmutationIcon from '@/layers/card/app/assets/images/spell/school/transmutation.png';
 
 export const useSpell = () => {
   const spellLevelTitle = new Map<SpellLevel, string>([

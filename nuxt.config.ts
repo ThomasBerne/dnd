@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   extends: [
     'infrastructure/devtools',
     'infrastructure/file',
+    // 'infrastructure/graphql',
     'infrastructure/nuxt',
     'infrastructure/security',
     'infrastructure/typescript',
@@ -16,8 +17,8 @@ export default defineNuxtConfig({
       './infrastructure/*/types',
       './infrastructure/*/composables',
 
-      './layers/*/types',
-      './layers/*/composables',
+      './layers/*/app/types',
+      './layers/*/app/composables',
     ],
   },
 });

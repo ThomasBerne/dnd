@@ -3,7 +3,7 @@ useHead({
   meta: [{ name: 'viewport', content: 'width=device-width, initial-scale=1' }],
   link: [{ rel: 'icon', href: '/favicon.ico' }],
   htmlAttrs: {
-    lang: 'en',
+    lang: 'fr',
   },
 });
 
@@ -16,8 +16,11 @@ useSeoMeta({
   description,
   ogTitle: title,
   ogDescription: description,
-  ogImage: undefined,
-  twitterImage: undefined,
+  ogImage: '/images/dungeons-dragons-artwork.avif',
+  ogUrl: 'https://dnd-kappa-one.vercel.app',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: '/images/dungeons-dragons-artwork.avif',
   twitterCard: 'summary_large_image',
 });
 </script>

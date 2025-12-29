@@ -10,7 +10,7 @@ const imageSrc = computed((): string | undefined => {
   <CardEditorCardBase>
     <img
       class="absolute w-full h-full object-cover"
-      src="@/layers/card/assets/images/card/card-wp.webp"
+      src="@/layers/card/app/assets/images/card/card-wp.webp"
     />
     <img
       v-if="!!card.image"
@@ -20,7 +20,7 @@ const imageSrc = computed((): string | undefined => {
     />
     <img
       class="absolute w-full h-full"
-      src="@/layers/card/assets/images/card/magic-verso.webp"
+      src="@/layers/card/app/assets/images/card/magic-verso.webp"
     />
   </CardEditorCardBase>
 </template>
