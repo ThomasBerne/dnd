@@ -6,7 +6,7 @@ const { sourceTitle } = useClassTrait();
 
 <template>
   <div class="flex gap-4">
-    <UFormField label="Poids" class="w-full">
+    <UFormField label="Source" class="w-full">
       <USelect
         v-model="card.source"
         :items="useMapToArray(sourceTitle, 'value', 'label')"

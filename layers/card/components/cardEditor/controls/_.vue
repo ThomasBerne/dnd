@@ -74,26 +74,26 @@ const isMap = new Map<CardType, Component>([
         <USeparator class="mb-2" />
         <div class="flex gap-4 flex-col lg:flex-row mb-4">
           <div class="flex w-full flex-col gap-3">
-            <div class="flex gap-4">
-              <UFormField label="Titre" class="w-full">
-                <UInput v-model="card.name" class="w-full" />
-              </UFormField>
-              <UFormField label="Type de carte" class="w-full">
-                <USelect
-                  v-model="card.type"
-                  :items="[
-                    { label: 'Objet magique', value: CardType.MagicItem },
-                    { label: 'Objet', value: CardType.Item },
-                    { label: 'Sort', value: CardType.Spell },
-                    { label: 'Aptitudes', value: CardType.Trait },
-                    { label: 'Arme', value: CardType.Weapon },
-                    { label: 'Armure', value: CardType.Armor },
-                  ]"
-                  class="w-full"
-                  @update:modelValue="card = getDefaultValue($event)"
-                />
-              </UFormField>
-            </div>
+            <UFormField label="Type de carte" class="w-full">
+              <URadioGroup
+                v-model="card.type"
+                class="w-full d-radio-group-wrap"
+                orientation="horizontal"
+                variant="card"
+                :items="[
+                  { label: 'Objet magique', value: CardType.MagicItem },
+                  { label: 'Objet', value: CardType.Item },
+                  { label: 'Sort', value: CardType.Spell },
+                  { label: 'Aptitudes', value: CardType.Trait },
+                  { label: 'Arme', value: CardType.Weapon },
+                  { label: 'Armure', value: CardType.Armor },
+                ]"
+                @update:modelValue="card = getDefaultValue($event)"
+              />
+            </UFormField>
+            <UFormField label="Titre" class="w-full">
+              <UInput v-model="card.name" class="w-full" />
+            </UFormField>
 
             <component :is="isMap.get(card.type)!" v-model="card" />
 

@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 const { cards, getDefaultValue, loadFromJsonFile, saveToJson } = useCard();
 
-if (cards.value.length === 0) cards.value = [getDefaultValue(CardType.Weapon)];
+const defaultCardType: CardType = CardType.MagicItem;
+
+if (cards.value.length === 0) cards.value = [getDefaultValue(defaultCardType)];
 
 const addCard = async (): Promise<void> => {
-  cards.value.push(getDefaultValue(CardType.Weapon));
+  cards.value.push(getDefaultValue(defaultCardType));
   await nextTick();
   useScrollTo(`.h-card-editor-controls-${cards.value.length}`, 200);
 };
@@ -27,9 +29,7 @@ const loadDialog = useFileDialog({
 });
 
 loadDialog.onChange((files) => {
-  if (files && files.length > 0) {
-    loadFromJsonFile(files[0]);
-  }
+  if (files && files.length > 0) loadFromJsonFile(files[0]);
 });
 </script>
 
