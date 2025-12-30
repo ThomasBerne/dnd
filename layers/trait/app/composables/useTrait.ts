@@ -1,4 +1,4 @@
-export const useClassTrait = () => {
+export const useTrait = () => {
   const sourceTitle = new Map<TraitSource, string>([
     [TraitSource.Class, 'Classe'],
     [TraitSource.Feat, 'Don'],
@@ -6,9 +6,5 @@ export const useClassTrait = () => {
     [TraitSource.Other, 'Autre'],
   ]);
 
-  CardService.getAllCards();
-
-  return {
-    sourceTitle,
-  };
+  return { sourceTitle };
 };

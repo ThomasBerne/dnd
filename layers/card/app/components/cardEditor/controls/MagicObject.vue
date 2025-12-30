@@ -1,27 +1,11 @@
 <script lang="ts" setup>
 const card = defineModel<Card<CardType.MagicItem>>({ required: true });
 
-const cardObjectTypes = [
-  { label: 'Anneau', value: CardMagicItemObjectType.Ring },
-  { label: 'Arme', value: CardMagicItemObjectType.Weapon },
-  { label: 'Armure', value: CardMagicItemObjectType.Armor },
-  { label: 'Baguette', value: CardMagicItemObjectType.Wand },
-  { label: 'Bâton', value: CardMagicItemObjectType.Staff },
-  { label: 'Objet merveilleux', value: CardMagicItemObjectType.WondrousItem },
-  { label: 'Parchemin', value: CardMagicItemObjectType.Scroll },
-  { label: 'Potion', value: CardMagicItemObjectType.Potion },
-  { label: 'Sceptre', value: CardMagicItemObjectType.Rod },
-];
+const { objectTypeLabel, rarityLabel } = useMagicItem();
 
-const cardRarityItems = [
-  { label: 'Commun', value: CardMagicItemRarity.Common },
-  { label: 'Peu commun', value: CardMagicItemRarity.Uncommon },
-  { label: 'Rare', value: CardMagicItemRarity.Rare },
-  { label: 'Très rare', value: CardMagicItemRarity.VeryRare },
-  { label: 'Légendaire', value: CardMagicItemRarity.Legendary },
-  { label: 'Artéfact', value: CardMagicItemRarity.Artifact },
-  { label: 'Variable', value: CardMagicItemRarity.Variable },
-];
+const cardObjectTypes = useMapToArray(objectTypeLabel, 'value', 'key');
+
+const cardRarityItems = useMapToArray(rarityLabel, 'value', 'key');
 </script>
 
 <template>

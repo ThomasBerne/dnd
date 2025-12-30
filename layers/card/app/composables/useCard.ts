@@ -28,9 +28,9 @@ export const useCard = () => {
         return {
           ...baseValue,
           type: CardType.MagicItem,
-          objectType: CardMagicItemObjectType.Weapon,
+          objectType: MagicItemObjectType.Weapon,
           objectTypeDescription: '',
-          rarity: CardMagicItemRarity.Common,
+          rarity: MagicItemRarity.Common,
           rarityDescription: '',
           attunementDescription: '',
           attunementRequired: false,

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const card = defineModel<Card<CardType.Trait>>({ required: true });
 
-const { sourceTitle } = useClassTrait();
+const { sourceTitle } = useTrait();
 </script>
 
 <template>

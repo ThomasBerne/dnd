@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 const { card } = defineProps<{ card: Card<CardType.Trait> }>();
 
-const { sourceTitle } = useClassTrait();
+const { sourceTitle } = useTrait();
 </script>
 
 <template>

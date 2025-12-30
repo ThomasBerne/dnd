@@ -1,16 +1,14 @@
 <script lang="ts" setup>
 const { card } = defineProps<{ card: Card<CardType.MagicItem> }>();
 
-const { cardMagicItemRarityLabel } = useCardMagicObject();
+const { rarityLabel } = useMagicItem();
 
 const rarityText = computed((): string => {
   if (card.rarityDescription && card.rarityDescription.trim() !== '') {
     return card.rarityDescription;
   }
 
-  return cardMagicItemRarityLabel.get(
-    card.rarity ?? CardMagicItemRarity.Common,
-  )!;
+  return rarityLabel.get(card.rarity ?? MagicItemRarity.Common)!;
 });
 </script>
 
