@@ -7,7 +7,7 @@
   "description": "Une application D&D pour générer des cartes",
   "author": "Thomas J.C. Berne",
   "scripts": {
-    "postinstall": "nuxt prepare",
+    "postinstall": "nuxt prepare && npm run prisma:generate",
     "dev": "nuxt dev --host 0.0.0.0",
     "build": "nuxt build",
     "generate": "nuxt generate",
@@ -20,7 +20,10 @@
     "lint:style:fix": "stylelint --fix \"**/*.{scss,vue}\"",
     "db": "docker compose -f ./infrastructure/docker/dev/docker-compose.yml --env-file ./.env",
     "db:up": "npm run db -d up",
-    "db:down": "npm run db down"
+    "db:down": "npm run db down",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:seed": "prisma db seed"
   },
   "dependencies": {
     "@iconify-json/game-icons": "^1.2.3",
