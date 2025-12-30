@@ -6,6 +6,8 @@ export const useClassTrait = () => {
     [TraitSource.Other, 'Autre'],
   ]);
 
+  CardService.getAllCards();
+
   return {
     sourceTitle,
   };

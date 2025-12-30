@@ -33,12 +33,13 @@ export default withNuxt([
           caughtErrorsIgnorePattern: '^_',
         },
       ],
+      '@typescript-eslint/no-namespace': 'off',
+
       'vue/attribute-hyphenation': [
         'error',
         'never',
         { ignore: ['camelCase'] },
       ],
-
       'vue/require-explicit-emits': 'error',
       'vue/valid-v-slot': 'off',
       'vue/v-on-event-hyphenation': ['error', 'never', {}],

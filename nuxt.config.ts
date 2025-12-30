@@ -3,8 +3,8 @@ export default defineNuxtConfig({
   extends: [
     'infrastructure/devtools',
     'infrastructure/file',
-    // 'infrastructure/graphql',
     'infrastructure/nuxt',
+    'infrastructure/prisma',
     'infrastructure/security',
     'infrastructure/typescript',
     'infrastructure/ui',
@@ -13,12 +13,12 @@ export default defineNuxtConfig({
   ],
 
   imports: {
-    dirs: [
-      './infrastructure/*/types',
-      './infrastructure/*/composables',
+    dirs: ['./infrastructure/*/types', './layers/*/app/types'],
+  },
 
-      './layers/*/app/types',
-      './layers/*/app/composables',
-    ],
+  nitro: {
+    imports: {
+      dirs: ['./layers/*/server/services', './layers/*/server/controllers'],
+    },
   },
 });

@@ -13,5 +13,8 @@
   "vue.editor.reactivityVisualization": false,
   "vue.editor.templateInterpolationDecorators": false,
   "vue.suggest.componentNameCasing": "alwaysPascalCase",
-  "vue.suggest.propNameCasing": "alwaysCamelCase"
+  "vue.suggest.propNameCasing": "alwaysCamelCase",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json": "untitled:Untitled-1"
+  }
 }
