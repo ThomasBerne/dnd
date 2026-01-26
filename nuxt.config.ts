@@ -4,7 +4,7 @@ export default defineNuxtConfig({
     'infrastructure/devtools',
     'infrastructure/file',
     'infrastructure/nuxt',
-    'infrastructure/prisma',
+    // 'infrastructure/prisma',
     'infrastructure/security',
     'infrastructure/typescript',
     'infrastructure/ui',

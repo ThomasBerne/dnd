@@ -7,7 +7,7 @@
   "description": "Une application D&D pour générer des cartes",
   "author": "Thomas J.C. Berne",
   "scripts": {
-    "postinstall": "nuxt prepare && npm run prisma:generate",
+    "postinstall": "nuxt prepare",
     "dev": "nuxt dev --host 0.0.0.0",
     "build": "nuxt build",
     "generate": "nuxt generate",
@@ -39,6 +39,7 @@
     "html-to-image": "^1.11.13",
     "nuxt": "^4.2.2",
     "nuxt-security": "^2.5.0",
+    "nuxt-tiptap-editor": "^3.2.0",
     "pg": "^8.16.3",
     "prisma": "^7.2.0",
     "zod": "^4.2.1"
