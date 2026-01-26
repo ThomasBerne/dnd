@@ -51,8 +51,7 @@ const { content } = defineProps<{ content: string }>();
   }
 
   p {
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
+    margin: 0.15rem 0;
   }
 
   a {
