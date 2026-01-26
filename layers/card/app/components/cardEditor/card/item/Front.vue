@@ -26,7 +26,6 @@ const { card } = defineProps<{ card: Card<CardType.Item> }>();
 
       <UiCardReducingText :height="524" :maxFontSize="24">
         <UiPreviewHtml
-          class="text-justify"
           :content="
             !!card.description && card.description !== ''
               ? card.description

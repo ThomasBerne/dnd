@@ -42,7 +42,6 @@ const { sourceTitle } = useTrait();
         :maxFontSize="24"
       >
         <UiPreviewHtml
-          class="text-justify"
           :content="
             !!card.description && card.description !== ''
               ? card.description

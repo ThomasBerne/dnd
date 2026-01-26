@@ -35,7 +35,6 @@ const rarityText = computed((): string => {
       </div>
       <UiCardReducingText :height="530" :maxFontSize="24">
         <UiPreviewHtml
-          class="text-justify"
           :content="
             !!card.description && card.description !== ''
               ? card.description

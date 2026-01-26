@@ -47,11 +47,12 @@ const { content } = defineProps<{ content: string }>();
 
   hr {
     margin: 1rem 0;
-    color: var(--color-green-500);
+    color: var(--color-gray-500);
   }
 
   p {
     margin: 0.15rem 0;
+    word-break: break-all;
   }
 
   a {
@@ -88,6 +89,14 @@ const { content } = defineProps<{ content: string }>();
       border: 1px solid var(--color-neutral-500);
       padding: 0 0.25rem;
     }
+  }
+
+  blockquote {
+    border-left: 4px solid var(--color-gray-400);
+    margin: 1rem 0;
+    padding-left: 1rem;
+    color: var(--color-gray-700);
+    font-style: italic;
   }
 }
 </style>

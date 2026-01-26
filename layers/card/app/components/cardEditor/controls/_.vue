@@ -27,6 +27,15 @@ const isMap = new Map<CardType, Component>([
   [CardType.Trait, CardEditorControlsTrait],
   [CardType.Weapon, CardEditorControlsWeapon],
 ]);
+
+const cardTypeItems = [
+  { label: 'Objet magique', value: CardType.MagicItem },
+  { label: 'Objet', value: CardType.Item },
+  { label: 'Sort', value: CardType.Spell },
+  { label: 'Aptitudes', value: CardType.Trait },
+  // { label: 'Arme', value: CardType.Weapon },
+  // { label: 'Armure', value: CardType.Armor },
+];
 </script>
 
 <template>
@@ -80,14 +89,7 @@ const isMap = new Map<CardType, Component>([
                 class="w-full d-radio-group-wrap"
                 orientation="horizontal"
                 variant="card"
-                :items="[
-                  { label: 'Objet magique', value: CardType.MagicItem },
-                  { label: 'Objet', value: CardType.Item },
-                  { label: 'Sort', value: CardType.Spell },
-                  { label: 'Aptitudes', value: CardType.Trait },
-                  { label: 'Arme', value: CardType.Weapon },
-                  { label: 'Armure', value: CardType.Armor },
-                ]"
+                :items="cardTypeItems"
                 @update:modelValue="card = getDefaultValue($event)"
               />
             </UFormField>

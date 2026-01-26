@@ -13,7 +13,7 @@ const {
 <template>
   <UiCard class="h-card-reducing-text">
     <UiReducingText
-      class="h-card-reducing-text italic size-full block"
+      class="h-card-reducing-text size-full block"
       :class="textClass"
       :maxFontSize
     >

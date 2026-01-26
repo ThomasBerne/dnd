@@ -89,7 +89,6 @@ const components = computed((): string => {
 
       <UiCardReducingText :height="426" :maxFontSize="24">
         <UiPreviewHtml
-          class="text-justify"
           :content="
             !!card.description && card.description !== ''
               ? card.description

@@ -15,7 +15,6 @@ const { card } = defineProps<{ card: Card<CardType.Weapon> }>();
 
       <UiCardReducingText :height="558" :maxFontSize="24">
         <UiPreviewHtml
-          class="text-justify"
           :content="
             !!card.description && card.description !== ''
               ? card.description
