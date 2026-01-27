@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const title = 'Générateur de cartes D&D';
+const title = 'Calculateur de capacités D&D';
 const description =
-  'Générez facilement des cartes pour vos parties de Donjons & Dragons avec notre outil en ligne simple et rapide. Personnalisez vos cartes selon vos besoins et imprimez-les en haute qualité.';
+  'Calculez facilement les modificateurs de capacités pour vos personnages de Donjons & Dragons 5e et 5.5e avec notre outil en ligne simple et rapide. Optimisez vos personnages pour des aventures épiques.';
 
 useSeoMeta({
   title,
@@ -20,9 +20,9 @@ useSeoMeta({
 <template>
   <div>
     <h1 class="text-3xl mb-6 font-bold">
-      Créateur de cartes Donjons et Dragons
+      Calculateur de caractéristiques Donjons et Dragons
     </h1>
 
-    <CardEditor />
+    <AbilityCalculator />
   </div>
 </template>

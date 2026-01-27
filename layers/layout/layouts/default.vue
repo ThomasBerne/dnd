@@ -6,23 +6,6 @@ useHead({
     lang: 'fr',
   },
 });
-
-const title = 'Générateur de cartes D&D';
-const description =
-  'Générez facilement des cartes pour vos parties de Donjons & Dragons avec notre outil en ligne simple et rapide. Personnalisez vos cartes selon vos besoins et imprimez-les en haute qualité.';
-
-useSeoMeta({
-  title,
-  description,
-  ogTitle: title,
-  ogDescription: description,
-  ogImage: '/images/dungeons-dragons-artwork.avif',
-  ogUrl: 'https://dnd-kappa-one.vercel.app',
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterImage: '/images/dungeons-dragons-artwork.avif',
-  twitterCard: 'summary_large_image',
-});
 </script>
 
 <template>
