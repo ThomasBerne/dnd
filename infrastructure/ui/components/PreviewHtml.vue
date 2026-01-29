@@ -52,7 +52,7 @@ const { content } = defineProps<{ content: string }>();
 
   p {
     margin: 0.15rem 0;
-    word-break: break-all;
+    word-break: normal;
   }
 
   a {

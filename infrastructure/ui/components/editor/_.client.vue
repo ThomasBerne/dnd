@@ -102,7 +102,7 @@ onBeforeUnmount(() => unref(editor)?.destroy());
 
   p {
     margin: 0.15rem 0;
-    word-break: break-all;
+    word-break: normal;
   }
 
   a {
