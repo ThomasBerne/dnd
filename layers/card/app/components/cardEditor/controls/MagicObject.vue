@@ -3,9 +3,9 @@ const card = defineModel<Card<CardType.MagicItem>>({ required: true });
 
 const { objectTypeLabel, rarityLabel } = useMagicItem();
 
-const cardObjectTypes = useMapToArray(objectTypeLabel, 'value', 'key');
+const cardObjectTypes = useMapToArray(objectTypeLabel, 'value', 'label');
 
-const cardRarityItems = useMapToArray(rarityLabel, 'value', 'key');
+const cardRarityItems = useMapToArray(rarityLabel, 'value', 'label');
 </script>
 
 <template>
