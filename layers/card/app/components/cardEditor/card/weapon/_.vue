@@ -1,9 +1,12 @@
 <script lang="ts" setup>
-const { card } = defineProps<{ card: Card<CardType.Weapon> }>();
+const { card, only } = defineProps<{
+  card: Card<CardType.Weapon>;
+  only: CardOnlyProp;
+}>();
 </script>
 
 <template>
-  <CardEditorCardWrapper>
+  <CardEditorCardWrapper :only>
     <template #front>
       <CardEditorCardWeaponFront :card />
     </template>
