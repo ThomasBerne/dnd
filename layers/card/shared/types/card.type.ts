@@ -7,11 +7,19 @@ export enum CardType {
   Armor = 'armor',
 }
 
+export enum CardBackType {
+  Image = 'image',
+  Description = 'description',
+}
+
 export type CardBase = {
   name: string;
+  backType: CardBackType;
   image?: File;
   imageContain?: boolean;
   description?: string;
+  backDescription?: string;
+  hideFrame?: boolean;
 };
 
 export type Card<T = unknown> = { type: T } & CardBase &

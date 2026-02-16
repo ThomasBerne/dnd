@@ -83,39 +83,41 @@ const cardTypeItems = [
         <USeparator class="mb-2" />
         <div class="flex gap-4 flex-col lg:flex-row mb-4">
           <div class="flex w-full flex-col gap-3">
-            <UFormField label="Type de carte" class="w-full">
-              <URadioGroup
-                v-model="card.type"
-                class="w-full d-radio-group-wrap"
-                orientation="horizontal"
-                variant="card"
-                :items="cardTypeItems"
-                @update:modelValue="card = getDefaultValue($event)"
-              />
-            </UFormField>
-            <UFormField label="Titre" class="w-full">
-              <UInput v-model="card.name" class="w-full" />
-            </UFormField>
+            <UTabs
+              :items="[
+                { label: 'Recto', slot: 'front' },
+                { label: 'Verso', slot: 'back' },
+              ]"
+            >
+              <template #front>
+                <UFormField label="Type de carte" class="w-full">
+                  <URadioGroup
+                    v-model="card.type"
+                    class="w-full d-radio-group-wrap"
+                    orientation="horizontal"
+                    variant="card"
+                    :items="cardTypeItems"
+                    @update:modelValue="card = getDefaultValue($event)"
+                  />
+                </UFormField>
+                <UFormField label="Titre" class="w-full">
+                  <UInput v-model="card.name" class="w-full" />
+                </UFormField>
 
-            <component :is="isMap.get(card.type)!" v-model="card" />
+                <component :is="isMap.get(card.type)!" v-model="card" />
 
-            <UFormField label="Description">
-              <UiEditor v-model="card.description" class="w-full min-h-21" />
-            </UFormField>
+                <UFormField label="Description">
+                  <UiEditor
+                    v-model="card.description"
+                    class="w-full min-h-21"
+                  />
+                </UFormField>
+              </template>
 
-            <UFormField label="Image">
-              <UFileUpload
-                v-model="card.image"
-                label="Image"
-                description="SVG, PNG, JPG or GIF (max. 2MB)"
-                class="w-full min-h-48"
-              />
-            </UFormField>
-            <label class="flex gap-2 items-center">
-              Remplir l'espace
-              <USwitch v-model="card.imageContain" />
-              Afficher l'image en entier
-            </label>
+              <template #back>
+                <CardEditorControlsBack v-model="card" />
+              </template>
+            </UTabs>
           </div>
 
           <div class="w-full max-w-107.5 @container">

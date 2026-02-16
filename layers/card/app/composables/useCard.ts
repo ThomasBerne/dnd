@@ -21,65 +21,65 @@ export const useCard = () => {
       description: '',
       image: undefined,
       imageContain: false,
+      backType: CardBackType.Image,
+      backDescription: '',
+      hideFrame: false,
     };
 
-    switch (type) {
-      case CardType.MagicItem:
-        return {
-          ...baseValue,
-          type: CardType.MagicItem,
-          objectType: MagicItemObjectType.Weapon,
-          objectTypeDescription: '',
-          rarity: MagicItemRarity.Common,
-          rarityDescription: '',
-          attunementDescription: '',
-          attunementRequired: false,
-        } as Card<CardType.MagicItem>;
-      case CardType.Item:
-        return {
-          type: CardType.Item,
-          name: '',
-          description: '',
-          weight: undefined,
-        } as Card<CardType.Item>;
-      case CardType.Spell:
-        return {
-          ...baseValue,
-          type: CardType.Spell,
-          image: undefined,
-          classes: [],
-          level: SpellLevel.Cantrip,
-          school: SpellSchool.Abjuration,
-          components: [],
-          componentsDetails: '',
-          castingTime: '',
-          range: '',
-          duration: '',
-          ritual: false,
-          concentration: false,
-          incantationTime: '',
-        } as Card<CardType.Spell>;
-      case CardType.Trait:
-        return {
-          ...baseValue,
-          type: CardType.Trait,
-          source: TraitSource.Class,
-        } as Card<CardType.Trait>;
-      case CardType.Weapon:
-        return {
-          ...baseValue,
-          type: CardType.Weapon,
-          damageDie: '',
-          damageType: DamageType.Slashing,
-          overrideDamage: '',
-          properties: [],
-          mastery: WeaponMastery.Cleave,
-          weight: '',
-          price: '',
-        } as Card<CardType.Weapon>;
-      default:
-        throw new Error('Unsupported card type');
-    }
+    if (type === CardType.MagicItem)
+      return {
+        ...baseValue,
+        type: CardType.MagicItem,
+        objectType: MagicItemObjectType.Weapon,
+        objectTypeDescription: '',
+        rarity: MagicItemRarity.Common,
+        rarityDescription: '',
+        attunementDescription: '',
+        attunementRequired: false,
+      } as Card<CardType.MagicItem>;
+    if (type === CardType.Item)
+      return {
+        type: CardType.Item,
+        name: '',
+        description: '',
+        weight: undefined,
+      } as Card<CardType.Item>;
+    if (type === CardType.Spell)
+      return {
+        ...baseValue,
+        type: CardType.Spell,
+        image: undefined,
+        classes: [],
+        level: SpellLevel.Cantrip,
+        school: SpellSchool.Abjuration,
+        components: [],
+        componentsDetails: '',
+        castingTime: '',
+        range: '',
+        duration: '',
+        ritual: false,
+        concentration: false,
+        incantationTime: '',
+      } as Card<CardType.Spell>;
+    if (type === CardType.Trait)
+      return {
+        ...baseValue,
+        type: CardType.Trait,
+        source: TraitSource.Class,
+      } as Card<CardType.Trait>;
+    if (type === CardType.Weapon)
+      return {
+        ...baseValue,
+        type: CardType.Weapon,
+        damageDie: '',
+        damageType: DamageType.Slashing,
+        overrideDamage: '',
+        properties: [],
+        mastery: WeaponMastery.Cleave,
+        weight: '',
+        price: '',
+      } as Card<CardType.Weapon>;
+    throw new Error('Unsupported card type');
   };
 
   const saveToJson = async (): Promise<void> => {
