@@ -5,7 +5,7 @@ const card = defineModel<Card>({ required: true });
 <template>
   <div class="flex flex-col gap-6">
     <UFormField label="Format">
-      <label class="flex gap-2 items-center w-fit">
+      <label class="flex gap-2 items-center w-fit font-normal!">
         Image
         <USwitch
           :modelValue="card.backType === CardBackType.Description"
@@ -26,19 +26,23 @@ const card = defineModel<Card>({ required: true });
         <UFileUpload
           v-model="card.image"
           label="Image"
-          description="SVG, PNG, JPG or GIF (max. 2MB)"
+          description="SVG, PNG, JPG or WEBP (max. 1 Mo)"
           class="w-full min-h-48"
+          accept="image/*"
         />
       </UFormField>
-      <label class="flex gap-2 items-center">
-        Remplir l'espace
-        <USwitch v-model="card.imageContain" />
-        Afficher l'image en entier
-      </label>
-      <label class="flex gap-2 items-center">
-        <USwitch v-model="card.hideFrame" />
-        Masquer le cadre
-      </label>
+      <UFormField label="Affichage de l'image">
+        <label class="flex gap-2 items-center font-normal!">
+          Remplir l'espace
+          <USwitch v-model="card.imageContain" />
+          Afficher l'image en entier
+        </label>
+      </UFormField>
+      <UFormField label="Cadre" orientation="vertical">
+        <label class="flex gap-2 font-normal!">
+          <USwitch v-model="card.hideFrame" /> Masquer le cadre de la carte
+        </label>
+      </UFormField>
     </template>
 
     <UFormField v-else label="Description">

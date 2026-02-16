@@ -23,16 +23,18 @@ useHead({
     </UHeader>
 
     <UMain
-      class="mb-16 pt-12 print:p-0 print:m-0 w-full px-2 md:px-16 light:bg-slate-100 print:bg-transparent!"
+      class="pt-12 print:p-0 print:m-0 w-full px-2 pb-16 print:pb-0 light:bg-slate-100 print:bg-transparent!"
     >
-      <NuxtPage />
+      <UContainer>
+        <NuxtPage />
+      </UContainer>
 
       <UButton
         size="xl"
         icon="lucide:move-up"
         class="rounded-full fixed z-50 bottom-4 right-4 shadow-2xl print:hidden"
         @click="useScrollTo('body')"
-      ></UButton>
+      />
     </UMain>
   </UApp>
 </template>
