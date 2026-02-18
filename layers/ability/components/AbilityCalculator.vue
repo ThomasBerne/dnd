@@ -35,6 +35,10 @@ const abilityScoreCost = (score: number): number => {
   return Infinity; // Scores above 15 are not allowed in standard point buy
 };
 
+const abilityModifier = (score: number): number => {
+  return Math.floor((score - 10) / 2);
+};
+
 const remainingPoints = computed((): number => {
   const totalPoints = 27;
 
@@ -70,13 +74,23 @@ const reset = () => {
     <div
       v-for="(ability, key) in abilities"
       :key="key"
-      class="flex gap-2 sm:items-center sm:flex-row flex-col"
+      class="flex gap-2 flex-col mb-6"
     >
-      <span class="min-w-32 font-bold">{{ ability.name }}</span>
-      <div class="my-4 w-full flex gap-2">
-        <USlider v-model="ability.score" :min="8" :max="15" :step="1" />
-        <span class="min-w-6 font-bold text-right">{{ ability.score }}</span>
+      <div class="flex gap-4 justify-between items-center">
+        <span class="font-bold text-2xl">{{ ability.name }}</span>
+
+        <div class="flex gap-2 items-center">
+          <span class="font-bold text-2xl text-right">
+            {{ ability.score }}
+          </span>
+          <span class="text-right whitespace-nowrap">
+            (Mod.
+            {{ abilityModifier(ability.score) >= 0 ? '+' : ''
+            }}{{ abilityModifier(ability.score) }})
+          </span>
+        </div>
       </div>
+      <USlider v-model="ability.score" :min="8" :max="15" :step="1" />
     </div>
   </UCard>
 </template>
