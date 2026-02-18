@@ -35,9 +35,11 @@ const abilityScoreCost = (score: number): number => {
   return Infinity; // Scores above 15 are not allowed in standard point buy
 };
 
-const abilityModifier = (score: number): number => {
-  return Math.floor((score - 10) / 2);
-};
+/**
+ * Calculate the ability modifier for a given ability score
+ * @param score The ability score to calculate the modifier for
+ */
+const abilityModifier = (score: number): number => Math.floor((score - 10) / 2);
 
 const remainingPoints = computed((): number => {
   const totalPoints = 27;
