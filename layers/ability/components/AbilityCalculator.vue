@@ -60,7 +60,7 @@ const reset = () => {
 </script>
 
 <template>
-  <UCard class="max-w-160 text-xl">
+  <UCard class="max-w-160 text-xl pb-2">
     <div
       class="flex gap-4 justify-between items-center mb-6 flex-col sm:flex-row"
     >
@@ -76,13 +76,14 @@ const reset = () => {
     <div
       v-for="(ability, key) in abilities"
       :key="key"
-      class="flex gap-2 flex-col mb-6"
+      class="flex gap-2 flex-col"
+      :class="{ 'mb-6': key !== 'charisma' }"
     >
       <div class="flex gap-4 justify-between items-center">
-        <span class="font-bold text-2xl">{{ ability.name }}</span>
+        <span class="font-bold text-xl">{{ ability.name }}</span>
 
         <div class="flex gap-2 items-center">
-          <span class="font-bold text-2xl text-right">
+          <span class="font-bold text-xl text-right">
             {{ ability.score }}
           </span>
           <span class="text-right whitespace-nowrap">

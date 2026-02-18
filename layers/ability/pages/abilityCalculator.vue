@@ -19,9 +19,7 @@ useSeoMeta({
 
 <template>
   <div>
-    <h1 class="text-3xl mb-6 font-bold">
-      Calculateur de caractéristiques Donjons et Dragons
-    </h1>
+    <h1 class="text-3xl mb-6 font-bold">Calculateur de caractéristiques D&D</h1>
 
     <AbilityCalculator />
   </div>
