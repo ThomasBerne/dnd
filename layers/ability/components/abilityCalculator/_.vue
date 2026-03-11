@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const { abilities, getDefaultValue } = useAbilityCalculatorData();
 
+const isExpanded = ref<boolean>(true);
+
 const abilityScoreCost = (score: number): number => {
   if (score < 8) return 0;
   if (score === 8) return 0;
@@ -52,7 +54,7 @@ const getTotalScore = (ability: Ability): number =>
 </script>
 
 <template>
-  <UCard class="d-ability-calculator max-w-[500px] text-xl pb-2">
+  <UCard class="d-ability-calculator max-w-125 text-xl pb-2">
     <div
       class="flex gap-4 justify-between items-center mb-6 flex-col sm:flex-row"
     >
@@ -60,9 +62,18 @@ const getTotalScore = (ability: Ability): number =>
         Points restants : <strong>{{ remainingPoints }} / 27</strong>
       </div>
 
-      <UButton color="neutral" variant="soft" @click="reset">
-        Réinitialiser
-      </UButton>
+      <div class="flex flex-row gap-1">
+        <UButton
+          color="neutral"
+          variant="soft"
+          @click="isExpanded = !isExpanded"
+        >
+          {{ isExpanded ? 'Réduire' : 'Étendre' }}
+        </UButton>
+        <UButton color="neutral" variant="soft" @click="reset">
+          Réinitialiser
+        </UButton>
+      </div>
     </div>
 
     <div v-for="(ability, index) in abilities" :key="ability.name">
@@ -83,69 +94,72 @@ const getTotalScore = (ability: Ability): number =>
         </div>
       </div>
 
-      <div class="flex flex-col md:flex-row gap-2 md:gap-6">
-        <AbilityCalculatorItem title="Score de base">
-          <div class="hidden md:flex flex-row gap-1">
-            <UButton
-              icon="lucide:minus"
-              :disabled="ability.baseScore === 8"
-              @click="setAbilityScore(index, ability.baseScore - 1)"
-            />
-            <UInput
-              :modelValue="ability.baseScore"
-              type="number"
-              :min="8"
-              :max="15"
-              :step="1"
-              class="w-full"
-              @update:modelValue="
-                (value) => setAbilityScore(index, Number(value))
-              "
-            />
-            <UButton
-              icon="lucide:plus"
-              :disabled="ability.baseScore === 15"
-              @click="setAbilityScore(index, ability.baseScore + 1)"
-            />
-          </div>
+      <UiTransitionExpand v-model="isExpanded">
+        <div class="flex flex-col md:flex-row gap-2 md:gap-6">
+          <AbilityCalculatorItem title="Score de base">
+            <div class="hidden md:flex flex-row gap-1">
+              <UButton
+                icon="lucide:minus"
+                :disabled="ability.baseScore === 8"
+                @click="setAbilityScore(index, ability.baseScore - 1)"
+              />
+              <UInput
+                v-model="ability.baseScore"
+                type="number"
+                :min="8"
+                :max="15"
+                :step="1"
+                class="w-full"
+                @blur="setAbilityScore(index, Number(ability.baseScore))"
+              />
+              <UButton
+                icon="lucide:plus"
+                :disabled="ability.baseScore === 15"
+                @click="setAbilityScore(index, ability.baseScore + 1)"
+              />
+            </div>
 
-          <div class="flex md:hidden w-full gap-2">
-            <USlider v-model="ability.baseScore" :min="8" :max="15" :step="1" />
-            <div class="min-w-8 text-right">{{ ability.baseScore }}</div>
-          </div>
-        </AbilityCalculatorItem>
+            <div class="flex md:hidden w-full gap-2">
+              <USlider
+                v-model="ability.baseScore"
+                :min="8"
+                :max="15"
+                :step="1"
+              />
+              <div class="min-w-8 text-right">{{ ability.baseScore }}</div>
+            </div>
+          </AbilityCalculatorItem>
 
-        <AbilityCalculatorItem title="Bonus d'origine">
-          <div class="hidden md:flex flex-row gap-1">
-            <UButton
-              icon="lucide:minus"
-              :disabled="ability.bonus === 0"
-              @click="setAbilityBonus(index, ability.bonus - 1)"
-            />
-            <UInput
-              :modelValue="ability.bonus"
-              type="number"
-              :min="0"
-              :max="15"
-              :step="1"
-              class="w-full"
-              @update:modelValue="
-                (value) => setAbilityBonus(index, Number(value))
-              "
-            />
-            <UButton
-              icon="lucide:plus"
-              :disabled="ability.bonus === 15"
-              @click="setAbilityBonus(index, ability.bonus + 1)"
-            />
-          </div>
+          <AbilityCalculatorItem title="Bonus d'origine">
+            <div class="hidden md:flex flex-row gap-1">
+              <UButton
+                icon="lucide:minus"
+                :disabled="ability.bonus === 0"
+                @click="setAbilityBonus(index, ability.bonus - 1)"
+              />
+              <UInput
+                v-model="ability.bonus"
+                type="number"
+                :min="0"
+                :max="15"
+                :step="1"
+                class="w-full"
+                @blur="setAbilityBonus(index, Number(ability.bonus))"
+              />
+              <UButton
+                icon="lucide:plus"
+                :disabled="ability.bonus === 15"
+                @click="setAbilityBonus(index, ability.bonus + 1)"
+              />
+            </div>
 
-          <div class="flex md:hidden w-full gap-2">
-            <USlider v-model="ability.bonus" :min="0" :max="15" :step="1" />
-            <div class="min-w-8 text-right">+{{ ability.bonus }}</div>
-          </div>
-        </AbilityCalculatorItem>
-      </div>
+            <div class="flex md:hidden w-full gap-2">
+              <USlider v-model="ability.bonus" :min="0" :max="15" :step="1" />
+              <div class="min-w-8 text-right">+{{ ability.bonus }}</div>
+            </div>
+          </AbilityCalculatorItem>
+        </div>
+      </UiTransitionExpand>
 
       <USeparator v-if="index < abilities.length - 1" class="my-2" />
     </div>
