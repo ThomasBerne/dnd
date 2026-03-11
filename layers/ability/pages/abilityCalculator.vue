@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const title = 'Calculateur de caractéristiques D&D';
+const title = 'Calculateur de caractéristiques D&D 5 & 5.5';
 const description =
   'Calculez facilement les modificateurs de caractéristiques pour vos personnages de Donjons & Dragons 5e et 5.5e avec notre outil en ligne simple et rapide. Optimisez vos personnages pour des aventures épiques.';
 
@@ -19,7 +19,9 @@ useSeoMeta({
 
 <template>
   <div>
-    <h1 class="text-3xl mb-6 font-bold">Calculateur de caractéristiques D&D</h1>
+    <h1 class="text-3xl mb-6 font-bold">
+      Calculateur de caractéristiques D&D 5 & 5.5
+    </h1>
 
     <AbilityCalculator />
   </div>
