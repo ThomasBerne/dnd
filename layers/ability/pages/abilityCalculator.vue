@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const title = 'Calculateur de capacités D&D';
+const title = 'Calculateur de caractéristiques D&D';
 const description =
-  'Calculez facilement les modificateurs de capacités pour vos personnages de Donjons & Dragons 5e et 5.5e avec notre outil en ligne simple et rapide. Optimisez vos personnages pour des aventures épiques.';
+  'Calculez facilement les modificateurs de caractéristiques pour vos personnages de Donjons & Dragons 5e et 5.5e avec notre outil en ligne simple et rapide. Optimisez vos personnages pour des aventures épiques.';
 
 useSeoMeta({
   title,
